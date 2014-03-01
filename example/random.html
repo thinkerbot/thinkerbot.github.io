@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cookie Monster</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/cover.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div id="target" class="inner cover">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var images = [
+        'http://laughingsquid.com/wp-content/uploads/2014/01/20140124-11361732-seaisforcookie.jpg',
+        'http://d3gqasl9vmjfd8.cloudfront.net/301b87b4-94e2-4a08-a5c1-ff27a046e7a4.png',
+        'http://static.giantbomb.com/uploads/original/7/70884/1313101-cookie_monster3_7769871237963363.jpg',
+        'http://images.huffingtonpost.com/2013-04-17-cmp014asst612x4436f4446e15454e33897db6fa72433f28png_png_autocropped.jpg',
+        'http://markandwalt.com/wp-content/uploads/2011/01/cookie-monster-quit-you.jpg',
+        'http://www.nerdesque.com/2010/06/30/venomnomnom.jpg'
+      ];
+      var index = Math.floor(Math.random()*images.length);
+      document.getElementById('target').innerHTML = '<img src="' + images[index] + '" />';
+    </script>
+  </body>
+</html>
