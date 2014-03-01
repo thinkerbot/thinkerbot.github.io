@@ -80,6 +80,9 @@
         };
       };
 
+      console.log(data.index);
+      console.log(data.order);
+
       $.cookie('data', JSON.stringify(data));
       document.getElementById('target').innerHTML = '<img src="' + images[data.order[data.index]] + '" width="220"/>';
     </script>
