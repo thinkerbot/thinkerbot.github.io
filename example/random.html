@@ -37,6 +37,13 @@
     <script src="../js/json2.js"></script>
 
     <script>
+      //+ Jonas Raoni Soares Silva
+      //@ http://jsfromhell.com/array/shuffle [v1.0]
+      function shuffle(o){ //v1.0
+          for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+          return o;
+      };
+
       var images = [
         'http://static.giantbomb.com/uploads/original/7/70884/1313101-cookie_monster3_7769871237963363.jpg',                     // smile
         'http://images.huffingtonpost.com/2013-04-17-cmp014asst612x4436f4446e15454e33897db6fa72433f28png_png_autocropped.jpg',   // smile on hand
@@ -48,20 +55,33 @@
       ];
 
       var json = $.cookie('data');
+      var version = 2;
 
       if(typeof json == 'undefined') {
-        var data = {'index': Math.floor(Math.random()*images.length)};
+        var data = {'version': 0};
       } else {
         var data = JSON.parse(json);
       };
 
-      data.index = data.index + 1;
-      if(data.index >= images.length) {
-        data.index = 0;
-      }
+      if(typeof data.version == 'undefined' || data.version < version) {
+        order = [];
+        for (var i = 0; i < images.length; i++) {
+          order.push(i);
+        };
+
+        data.index = Math.floor(Math.random()*images.length);
+        data.order = shuffle(order);
+        data.version = version;
+  
+      } else {
+        data.index = data.index + 1;
+        if(data.index >= images.length) {
+          data.index = 0;
+        };
+      };
 
       $.cookie('data', JSON.stringify(data));
-      document.getElementById('target').innerHTML = '<img src="' + images[data.index] + '" width="220"/>';
+      document.getElementById('target').innerHTML = '<img src="' + images[data.order[data.index]] + '" width="220"/>';
     </script>
   </body>
 </html>
