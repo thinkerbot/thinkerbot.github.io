@@ -32,16 +32,36 @@
       </div>
     </div>
 
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/json2.js"></script>
+
     <script>
       var images = [
-        'http://laughingsquid.com/wp-content/uploads/2014/01/20140124-11361732-seaisforcookie.jpg',
-        'http://d3gqasl9vmjfd8.cloudfront.net/301b87b4-94e2-4a08-a5c1-ff27a046e7a4.png',
-        'http://static.giantbomb.com/uploads/original/7/70884/1313101-cookie_monster3_7769871237963363.jpg',
-        'http://images.huffingtonpost.com/2013-04-17-cmp014asst612x4436f4446e15454e33897db6fa72433f28png_png_autocropped.jpg',
-        'http://markandwalt.com/wp-content/uploads/2011/01/cookie-monster-quit-you.jpg',
+        'http://static.giantbomb.com/uploads/original/7/70884/1313101-cookie_monster3_7769871237963363.jpg',                     // smile
+        'http://images.huffingtonpost.com/2013-04-17-cmp014asst612x4436f4446e15454e33897db6fa72433f28png_png_autocropped.jpg',   // smile on hand
+        'http://markandwalt.com/wp-content/uploads/2011/01/cookie-monster-quit-you.jpg',                                         // quit you
+        'http://d3gqasl9vmjfd8.cloudfront.net/301b87b4-94e2-4a08-a5c1-ff27a046e7a4.png',                                         // binge
+        'http://static1.wikia.nocookie.net/__cb20101221090418/muppet/images/4/43/Cookie.FBvideo.png',                            // sing
+        'http://laughingsquid.com/wp-content/uploads/2014/01/20140124-11361732-seaisforcookie.jpg',                              // sea
+        'http://paolaemilia06.files.wordpress.com/2013/04/cookie-monster-pac-man-tee.gif',                                       // pac man
       ];
-      var index = Math.floor(Math.random()*images.length);
-      document.getElementById('target').innerHTML = '<img src="' + images[index] + '" width="220"/>';
+
+      var json = $.cookie('data');
+
+      if(typeof json == 'undefined') {
+        var data = {'index': Math.floor(Math.random()*images.length)};
+      } else {
+        var data = JSON.parse(json);
+      };
+
+      data.index = data.index + 1;
+      if(data.index >= images.length) {
+        data.index = 0;
+      }
+
+      $.cookie('data', JSON.stringify(data));
+      document.getElementById('target').innerHTML = '<img src="' + images[data.index] + '" width="220"/>';
     </script>
   </body>
 </html>
